@@ -1,0 +1,91 @@
+{% extends 'hometemplate.html' %}
+{% load static %}
+{% block title %}
+    学生选课
+{% endblock %}
+{% block content %}
+{#    <div class="container" >#}
+{#        <form action="" method="post" class="form-horizontal " novalidate>#}
+{#        {% csrf_token %}#}
+{#            {% for field in cou_obj %}#}
+{#                <div class="col-4" style="float: left">#}
+{#                    <div style="font-size: large;font-weight: bold;">{{ field.course_name }}</div>#}
+{#                    <div><img src="{{MEDIA_URL}}{{ field.course_img }}" alt="" style="width: 200px;height: 250px;align-content: center" class="img-rounded"></div>#}
+{#                    <div>授课老师: {{ field.course_teacher }}</div>#}
+{#                    <div>学分:{{ field.course_credit }}</div>#}
+{#                    <label class="checkbox-inline">#}
+{#                      <input type="radio" id="inlineCheckbox1" value="{{ field.course_name }}" name="choise_course">选课{{ field.course_name }}#}
+{#                    </label>#}
+{#                    <div>课程简介</div>#}
+{#                    <div style="height: 100px">{{ field.remark }}</div>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#            <input type="submit" class="btn btn-success">#}
+{#        </form>#}
+{#    </div>#}
+{#    <div style="height: 50px">#}
+{#    </div>#}
+
+    <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs">
+                        <ul class="flex flex-wrap align-items-center p-0 m-0">
+                            <li><a href="#"><i class="fa fa-home"></i>主页</a></li>
+                            <li>选课</li>
+                            <li>课程库</li>
+                        </ul>
+                    </div><!-- .breadcrumbs -->
+                </div><!-- .col -->
+                </div><!-- .row -->
+                <form action="" method="post" class="form-horizontal " novalidate>
+                    <div class="featured-courses courses-wrap">
+                        <div class="row mx-m-25" >
+                            {% csrf_token %}
+                            {% for field in cou_obj %}
+                            <div class="col-12 col-md-6 px-25">
+                                <div class="course-content">
+                                    <figure class="course-thumbnail">
+                                        <a href="#"><img src="{{MEDIA_URL}}{{ field.course_img }}" style="width: 300px;height: 350px;margin-left: 8%" alt="" ></a>
+                                    </figure><!-- .course-thumbnail -->
+                                    <div class="course-content-wrap">
+                                        <header class="entry-header">
+                                            <h2 class="entry-title"><a href="#">{{ field.course_name }}</a></h2>
+
+                                            <div class="entry-meta flex flex-wrap align-items-center">
+                                                <div class="course-author"><a href="#">{{ field.course_teacher }}</a></div>
+                                                <div class="course-date">{{ field.start_time|date}}</div>
+                                            </div><!-- .course-date -->
+                                        </header><!-- .entry-header -->
+
+                                        <footer class="entry-footer flex flex-wrap justify-content-between align-items-center">
+                                            <div class="course-cost">
+                                                <span class="free-cost">Free</span>
+                                            </div><!-- .course-cost -->
+
+                                            <div class="course-ratings flex justify-content-end align-items-center">
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star-o"></span>
+
+                                                <span class="course-ratings-count">4星</span>
+                                            </div><!-- .course-ratings -->
+                                        </footer><!-- .entry-footer -->
+                                    </div><!-- .course-content-wrap -->
+                                </div><!-- .course-content -->
+                                <label class="checkbox-inline">
+                                  <input type="radio" id="inlineCheckbox1" value="{{ field.course_name }}" name="choise_course">选课{{ field.course_name }}
+                                </label>
+                            </div><!-- .col -->
+                           {% endfor %}
+                        </div>
+                    </div>
+                    <div><input type="submit" class="btn btn-success col-3 pull-right"></div>
+                </form>
+            </div>
+    </div>
+    <div style="height: 50px">
+    </div>
+{% endblock content %}

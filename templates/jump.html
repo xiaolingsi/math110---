@@ -1,0 +1,24 @@
+{% extends 'hometemplate.html' %}
+{% block title %}
+    跳转页面
+{% endblock %}
+{% block content %}
+    <p style="font-weight: bold;font-size: 20px;padding-left: 30%;color: #005cbf">请先进行身份注册！再进行选课！还有<span id="sp">5</span>秒跳转到身份注册界面...</p>
+{% endblock %}
+{% block script %}
+    <script>
+    onload=function () {
+        setInterval(go,1000)
+    };
+    var x=4;
+    function go() {
+
+        if (x>=0){
+            document.getElementById("sp").innerText=x;
+        }else {
+            location.href="{% url 'add_stu_info' %}";
+        }
+        x--;
+    }
+</script>
+{% endblock script %}

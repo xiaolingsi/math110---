@@ -1,0 +1,39 @@
+{% extends 'hometemplate.html' %}
+{% block title %}
+    身份注册
+{% endblock %}
+{% block content %}
+    <div style="height: 20px"></div>
+    <div class="container" style="padding-left: 200px">
+     <form  class="form-horizontal " novalidate method="post">
+        {% csrf_token %}
+        {{ msg }}
+        {% for field in stu_obj_form %}
+          <div class="form-group" style="height: 50px">
+          <label for="{{ field.id_for_label }}" class="col-sm-1 control-label" style="float: left">{{ field.label }}</label>
+          <div class="col-sm-7" style="float: left">
+            {{ field }}
+          </div>
+          <div class="col-sm-4" style="float: left">
+            {{ field.errors.0 }}
+          </div>
+          <br>
+        </div>
+        {% endfor %}
+
+        {% for field in tea_obj_form %}
+         <div class="form-group" style="height: 50px">
+          <label for="{{ field.id_for_label }}" class="col-sm-1 control-label" style="float: left">{{ field.label }}</label>
+          <div class="col-sm-7" style="float: left">
+            {{ field }}
+          </div>
+          <div class="col-sm-4" style="float: left">
+            {{ field.errors.0 }}
+          </div>
+          <br>
+        </div>
+        {% endfor %}
+    <button class="btn btn-success col-sm-2 offset-6">提交</button>
+    </form>
+    </div>
+{% endblock content %}
